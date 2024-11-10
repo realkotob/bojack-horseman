@@ -69,7 +69,8 @@ public class CardSpawner : MonoBehaviour
 
         cardCount = PlayerPrefs.GetInt("CardCount", 12);
 
-        SpawnCards();
+        var cardData = SelectRandomCards(cardCount);
+        SpawnCards(cardData);
     }
 
     private void ResetBoard()
@@ -97,25 +98,6 @@ public class CardSpawner : MonoBehaviour
         }
     }
 
-    private void SpawnCards()
-    {
-        var selectedCards = SelectRandomCards(cardCount);
-
-        for (int i = 0; i < selectedCards.Count; i++)
-        {
-            var cardObject = Instantiate(cardPrefab, Vector3.zero, Quaternion.identity, gridLayout.transform);
-            var cardFlipComponent = cardObject.GetComponent<CardFlip>();
-
-            var cardId = selectedCards[i];
-            cardFlipComponent.Initialize(cardId, allSprites[cardId], true);
-
-            cardMatcher.RegisterCard(cardFlipComponent);
-            cardsList.Add(cardFlipComponent);
-        }
-
-        gridResizer.ResizeCardsToFitGrid();
-    }
-
     private void SpawnCards(CardData[] saveData)
     {
         for (int i = 0; i < saveData.Length; i++)
@@ -133,17 +115,23 @@ public class CardSpawner : MonoBehaviour
         gridResizer.ResizeCardsToFitGrid();
     }
 
-    private List<int> SelectRandomCards(int totalCards)
+    private CardData[] SelectRandomCards(int totalCards)
     {
         Shuffle(allCardIds);
 
         var cardIds = allCardIds.Take(totalCards / 2).ToList();
 
-        cardIds.AddRange(cardIds);
+        cardIds.AddRange(cardIds); // So that the cards are in pairs
 
         Shuffle(cardIds);
 
-        return cardIds;
+        CardData[] cardData = new CardData[cardIds.Count];
+        for (int i = 0; i < cardData.Length; i++)
+        {
+            cardData[i] = new CardData(cardIds[i], true);
+        }
+
+        return cardData;
     }
 
     private void Shuffle<T>(List<T> list)

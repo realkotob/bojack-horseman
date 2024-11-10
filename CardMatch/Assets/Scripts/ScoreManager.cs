@@ -26,7 +26,7 @@ public class ScoreManager : MonoBehaviour
 
     public void IncreaseScoreAndCombo()
     {
-        currentScore += currentCombo;
+        currentScore += currentCombo; // Bigger combos means bigger score increments
 
         currentCombo += 1;
 

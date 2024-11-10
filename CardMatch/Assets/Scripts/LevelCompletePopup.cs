@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+namespace CardMatch
+{
 public class LevelCompletePopup : MonoBehaviour
 {
     void Start()
     {
     }
 
-    public void Show(){
+    public void Show()
+    {
         gameObject.SetActive(true);
     }
 
-    public void OnHomeButtonPressed(){
+    public void OnHomeButtonPressed()
+    {
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -21,4 +25,5 @@ public class LevelCompletePopup : MonoBehaviour
     {
         SceneManager.LoadScene("GameScene");
     }
+}
 }

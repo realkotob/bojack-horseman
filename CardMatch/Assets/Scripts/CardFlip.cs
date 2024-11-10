@@ -122,35 +122,27 @@ public class CardFlip : MonoBehaviour
         if (isFlipping)
         {
             float step = flipSpeed * Time.deltaTime;
+            Quaternion targetRotation;
             if (isOpen)
             {
-                rotationParent.rotation = Quaternion.RotateTowards(rotationParent.rotation, frontRotation, step * 180);
-                var angle = Quaternion.Angle(rotationParent.rotation, frontRotation);
-                if (angle < 1f)
-                {
-                    rotationParent.rotation = frontRotation;
-                    isFlipping = false;
-                }
-                if (angle < 90)
-                {
-                    imageFront.enabled = true;
-                    imageBack.enabled = false;
-                }
+                targetRotation = frontRotation;
             }
             else
             {
-                rotationParent.rotation = Quaternion.RotateTowards(rotationParent.rotation, backRotation, step * 180);
-                var angle = Quaternion.Angle(rotationParent.rotation, backRotation);
-                if (angle < 1f)
-                {
-                    rotationParent.rotation = backRotation;
-                    isFlipping = false;
-                }
-                if (angle < 90)
-                {
-                    imageFront.enabled = false;
-                    imageBack.enabled = true;
-                }
+                targetRotation = backRotation;
+            }
+            
+            rotationParent.rotation = Quaternion.RotateTowards(rotationParent.rotation, targetRotation, step * 180);
+            var angle = Quaternion.Angle(rotationParent.rotation, targetRotation);
+            if (angle < 1f)
+            {
+                rotationParent.rotation = targetRotation;
+                isFlipping = false;
+            }
+            if (angle < 90)
+            {
+                imageFront.enabled = isOpen;
+                imageBack.enabled = !isOpen;
             }
         }
     }
