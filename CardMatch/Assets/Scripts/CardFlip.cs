@@ -25,6 +25,9 @@ public class CardFlip : MonoBehaviour
     [SerializeField]
     private Image imageFront;
 
+    [SerializeField]
+    private RandomSFX flipSound;
+
 #region Public variables
 
     internal Action<CardFlip> cardOpened;
@@ -105,6 +108,8 @@ public class CardFlip : MonoBehaviour
         isOpen = !isOpen;
         isFlipping = true;
         // Debug.Log("Flip card to " + isOpen);
+
+        flipSound.Play();
 
         if (isOpen)
         {
