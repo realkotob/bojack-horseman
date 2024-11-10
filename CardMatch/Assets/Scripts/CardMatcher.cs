@@ -6,6 +6,11 @@ namespace CardMatch
 {
 public class CardMatcher : MonoBehaviour
 {
+
+    [Header("References")]
+    [SerializeField]
+    private ScoreManager scoreManager;
+
     private CardFlip currentCard = null;
 
     private List<CardFlip> cardsList = new List<CardFlip>();
@@ -39,6 +44,8 @@ public class CardMatcher : MonoBehaviour
             card.SetMatched();
             currentCard = null;
 
+            scoreManager.IncreaseScoreAndCombo();
+
             CheckGameComplete();
         }
         else
@@ -46,6 +53,8 @@ public class CardMatcher : MonoBehaviour
             currentCard.SetNotMatched();
             card.SetNotMatched();
             currentCard = null;
+
+            scoreManager.ResetCombo();
         }
     }
 
