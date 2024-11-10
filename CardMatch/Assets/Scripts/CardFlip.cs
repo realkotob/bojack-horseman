@@ -24,11 +24,19 @@ public class CardFlip : MonoBehaviour
     private bool isOpen = false;
     private bool isFlipping = false;
 
+    private int cardId = 0;
+
     void Start()
     {
         backRotation = rotationParent.rotation;
         frontRotation = Quaternion.Euler(rotationParent.eulerAngles + new Vector3(0, 180, 0));
         imageFront.enabled = false;
+    }
+
+    public void Initialize(int cardId, Sprite sprite)
+    {
+        imageFront.sprite = sprite;
+        this.cardId = cardId;
     }
 
     void Update()

@@ -288,6 +288,62 @@ MonoBehaviour:
   cardPrefab: {fileID: 7839782944286883751, guid: 527d2750d18c0412596f1953676bea4f, type: 3}
   gridLayout: {fileID: 1472184458}
   gridResizer: {fileID: 729750816}
+  heartsSprites:
+  - {fileID: 21300000, guid: d5211cf33a1cf4759b3000165378cdfa, type: 3}
+  - {fileID: 21300000, guid: 20a2881fc468b4590a85de80181309bd, type: 3}
+  - {fileID: 21300000, guid: 05917b8d7b9a24797a36f68ddc10d940, type: 3}
+  - {fileID: 21300000, guid: d63a2fb0e6d664597b2b2afcba981218, type: 3}
+  - {fileID: 21300000, guid: c561e4de006774773973658cea7a316a, type: 3}
+  - {fileID: 21300000, guid: 26227ad7905584f67bcbf55f9042df2a, type: 3}
+  - {fileID: 21300000, guid: 6a28250abf0ea4c9691f9b5e8834a2ab, type: 3}
+  - {fileID: 21300000, guid: d21901aea41ee4cd493eaee147c7c510, type: 3}
+  - {fileID: 21300000, guid: 10a9c81382aaf4b2fa1351fe9f46a418, type: 3}
+  - {fileID: 21300000, guid: 75003f40540b14c668cbe0dcf34c63fc, type: 3}
+  - {fileID: 21300000, guid: d0e3a652f167f41d8906bb15be114fbd, type: 3}
+  - {fileID: 21300000, guid: d1b013168a0ff499f9e4c27a1e745bf2, type: 3}
+  - {fileID: 21300000, guid: 5110048f3e5fb42709d58175af9b3e47, type: 3}
+  diamondsSprites:
+  - {fileID: 21300000, guid: b1d6a4f84ff27489e930c74c9867bb47, type: 3}
+  - {fileID: 21300000, guid: 93c898336b7b347d4b56224b372d5b35, type: 3}
+  - {fileID: 21300000, guid: 5e4f6aee2d29a4c6cb8fb87512762712, type: 3}
+  - {fileID: 21300000, guid: 606d2c60a5963470cbbea551f3568561, type: 3}
+  - {fileID: 21300000, guid: 0d2dfe9a3f1694522a65ed69f803d9cd, type: 3}
+  - {fileID: 21300000, guid: 1653376cad56e4c3f8776fadd4beaf37, type: 3}
+  - {fileID: 21300000, guid: 488a64fafa2574fe2ad999c28e693698, type: 3}
+  - {fileID: 21300000, guid: c301660d72c0c4925866e21b6872994c, type: 3}
+  - {fileID: 21300000, guid: 74829291805a040be9adc97f06ce0964, type: 3}
+  - {fileID: 21300000, guid: 6cbeebe0e23fd4de2b939e0c9f4639ed, type: 3}
+  - {fileID: 21300000, guid: 56ec32f9c4efe460aaa97726f531b629, type: 3}
+  - {fileID: 21300000, guid: e9932de48e8d44fa7b760ba3a8cd00fb, type: 3}
+  - {fileID: 21300000, guid: ebf38dbdc2cd84366b8699ab78c12563, type: 3}
+  clubsSprites:
+  - {fileID: 21300000, guid: ede2a4a4360ab437694f1fd45391b708, type: 3}
+  - {fileID: 21300000, guid: b38ff03d67b274fb8983ff3092cffc33, type: 3}
+  - {fileID: 21300000, guid: a962ce9692dbc4d638e74d57f3d97fde, type: 3}
+  - {fileID: 21300000, guid: 1fb0fe9bdfd2a4b5da42d412b9fb718d, type: 3}
+  - {fileID: 21300000, guid: a2a2c498544bb4accb890a8d7169d079, type: 3}
+  - {fileID: 21300000, guid: d3513244c14664449b7aba3b07a171fc, type: 3}
+  - {fileID: 21300000, guid: d8f02f6b9d76e4462b2965898349faf2, type: 3}
+  - {fileID: 21300000, guid: b780573f6211c4d3a83767391c294964, type: 3}
+  - {fileID: 21300000, guid: 316dc74dc8825431b985b52fe17ee7b8, type: 3}
+  - {fileID: 21300000, guid: 3ff58d2de9264414d968e9082b02906f, type: 3}
+  - {fileID: 21300000, guid: 7fa65f54297414884ab5765817609d4f, type: 3}
+  - {fileID: 21300000, guid: f7a73123508584625b9b531ebe80060e, type: 3}
+  - {fileID: 21300000, guid: 4fa8d46b32a25491caa30f5f25806481, type: 3}
+  spadesSprites:
+  - {fileID: 21300000, guid: 712cd2758b6214a81ab950f378037f23, type: 3}
+  - {fileID: 21300000, guid: 9dbbcbd7435e44accaf8745bc13b37d2, type: 3}
+  - {fileID: 21300000, guid: 4b943e5baeea44c99b525218fd086ca1, type: 3}
+  - {fileID: 21300000, guid: bbbe016874efd4308870b99f682db18b, type: 3}
+  - {fileID: 21300000, guid: 11bf7d8c7a2fc42b4a7b0247ea0344c4, type: 3}
+  - {fileID: 21300000, guid: 72ed1f9d6408d457e8db579ee6495d1b, type: 3}
+  - {fileID: 21300000, guid: 1f7618c4476124b4288a48b98f682953, type: 3}
+  - {fileID: 21300000, guid: 64c848a8cca524d738785e6e266d752b, type: 3}
+  - {fileID: 21300000, guid: 08a35e61645a74087892f818dbbfa3e6, type: 3}
+  - {fileID: 21300000, guid: 78a634867d7ac4f0fbe15ecbf8d27589, type: 3}
+  - {fileID: 21300000, guid: f968d8e2caabc4fa59923fb06bcb9187, type: 3}
+  - {fileID: 21300000, guid: 4aa95091edcf4423a8a15115ba5fdb21, type: 3}
+  - {fileID: 21300000, guid: 5fd0aa78169a442e0a6397d338dc8250, type: 3}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
