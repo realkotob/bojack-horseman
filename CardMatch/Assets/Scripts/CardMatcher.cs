@@ -6,14 +6,17 @@ namespace CardMatch
 {
 public class CardMatcher : MonoBehaviour
 {
-
     private CardFlip currentCard = null;
+
+    private List<CardFlip> cardsList = new List<CardFlip>();
+
     void Start()
     {
     }
 
     public void RegisterCard(CardFlip card)
     {
+        cardsList.Add(card);
         card.cardOpened += OnCardOpened;
     }
 
@@ -35,6 +38,8 @@ public class CardMatcher : MonoBehaviour
             currentCard.SetMatched();
             card.SetMatched();
             currentCard = null;
+
+            CheckGameComplete();
         }
         else
         {
@@ -42,6 +47,40 @@ public class CardMatcher : MonoBehaviour
             card.SetNotMatched();
             currentCard = null;
         }
+    }
+
+    public void CheckGameComplete()
+    {
+        var gameComplete = true;
+        foreach (var item in cardsList)
+        {
+            if (!item.GetIsMatched())
+            {
+                gameComplete = false;
+            }
+        }
+
+        if (gameComplete)
+        {
+            // Save empty file when game is finished
+            SaveLoadManager.SaveData(new CardData[0]);
+
+            // TODO Show win popup
+        }
+        else
+        {
+            SaveLoadManager.SaveData(GetDataArray());
+        }
+    }
+
+    public CardData[] GetDataArray()
+    {
+        var cardDataList = new List<CardData>();
+        foreach (var item in cardsList)
+        {
+            cardDataList.Add(item.GetCardData());
+        }
+        return cardDataList.ToArray();
     }
 }
 }

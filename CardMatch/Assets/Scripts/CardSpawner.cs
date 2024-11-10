@@ -47,13 +47,35 @@ public class CardSpawner : MonoBehaviour
 
     private System.Random random = new System.Random();
 
+    private List<CardFlip> cardsList = new List<CardFlip>();
+
 #endregion
 
     void Start()
     {
+        ResetBoard();
+
         CreateCardDeck();
 
-        SpawnCards();
+        var saveData = SaveLoadManager.LoadData();
+        if (saveData.Length > 0)
+        {
+            SpawnCards(saveData);
+        }
+        else
+        {
+            SpawnCards();
+        }
+    }
+
+    private void ResetBoard()
+    {
+        // Remove all existing cards
+        foreach (Transform child in gridLayout.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        cardsList = new List<CardFlip>();
     }
 
     private void CreateCardDeck()
@@ -73,21 +95,35 @@ public class CardSpawner : MonoBehaviour
 
     private void SpawnCards()
     {
-        // Remove all existing cards
-        foreach (Transform child in gridLayout.transform)
-        {
-            Destroy(child.gameObject);
-        }
-
         var selectedCards = SelectRandomCards(cardCount);
 
         for (int i = 0; i < selectedCards.Count; i++)
         {
-            var cardId = selectedCards[i];
             var cardObject = Instantiate(cardPrefab, Vector3.zero, Quaternion.identity, gridLayout.transform);
             var cardFlipComponent = cardObject.GetComponent<CardFlip>();
-            cardFlipComponent.Initialize(cardId, allSprites[cardId]);
+
+            var cardId = selectedCards[i];
+            cardFlipComponent.Initialize(cardId, allSprites[cardId], true);
+
             cardMatcher.RegisterCard(cardFlipComponent);
+            cardsList.Add(cardFlipComponent);
+        }
+
+        gridResizer.ResizeCardsToFitGrid();
+    }
+
+    private void SpawnCards(CardData[] saveData)
+    {
+        for (int i = 0; i < saveData.Length; i++)
+        {
+            var cardObject = Instantiate(cardPrefab, Vector3.zero, Quaternion.identity, gridLayout.transform);
+            var cardFlipComponent = cardObject.GetComponent<CardFlip>();
+
+            var cardId = saveData[i].cardId;
+            cardFlipComponent.Initialize(cardId, allSprites[cardId], saveData[i].cardInPlay);
+
+            cardMatcher.RegisterCard(cardFlipComponent);
+            cardsList.Add(cardFlipComponent);
         }
 
         gridResizer.ResizeCardsToFitGrid();

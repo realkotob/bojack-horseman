@@ -52,11 +52,19 @@ public class CardFlip : MonoBehaviour
         imageFront.enabled = false;
     }
 
-    public void Initialize(int cardId, Sprite sprite)
+    public void Initialize(int cardId, Sprite sprite, bool cardInPlay)
     {
         imageFront.sprite = sprite;
         this.cardId = cardId;
+
+        if (!cardInPlay)
+        {
+            isMatched = true;
+            HideCard();
+        }
     }
+
+#region Flip helpers
 
     void Update()
     {
@@ -96,7 +104,7 @@ public class CardFlip : MonoBehaviour
     {
         isOpen = !isOpen;
         isFlipping = true;
-        Debug.Log("Flip card to " + isOpen);
+        // Debug.Log("Flip card to " + isOpen);
 
         if (isOpen)
         {
@@ -142,6 +150,8 @@ public class CardFlip : MonoBehaviour
         }
     }
 
+#endregion
+
 #region Matching helpers
 
     public void SetMatched()
@@ -170,6 +180,16 @@ public class CardFlip : MonoBehaviour
     public int GetCardId()
     {
         return cardId;
+    }
+
+    public bool GetIsMatched()
+    {
+        return isMatched;
+    }
+
+    public CardData GetCardData()
+    {
+        return new CardData(cardId, !isMatched);
     }
 
 #endregion
