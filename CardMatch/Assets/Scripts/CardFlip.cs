@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace CardMatch
+{
 public class CardFlip : MonoBehaviour
 {
 
@@ -98,4 +100,5 @@ public class CardFlip : MonoBehaviour
             }
         }
     }
+}
 }

@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace CardMatch
+{
 public class CardSpawner : MonoBehaviour
 {
 
@@ -16,7 +18,10 @@ public class CardSpawner : MonoBehaviour
 
     [SerializeField]
     private GameObject gridLayout;
-    
+
+    [SerializeField]
+    private GridResizer gridResizer;
+
     void Start()
     {
         SpawnCards();
@@ -34,5 +39,8 @@ public class CardSpawner : MonoBehaviour
         {
             Instantiate(cardPrefab, Vector3.zero, Quaternion.identity, gridLayout.transform);
         }
+
+        gridResizer.ResizeCardsToFitGrid();
     }
+}
 }
