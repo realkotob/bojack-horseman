@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f80a7952e6e7b4beeb1d2a748dafded9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flipSpeed: 0.5
+  flipSpeed: 4
   rotationParent: {fileID: 8937997998885172128}
   imageBack: {fileID: 2871470063907916647}
   imageFront: {fileID: 5879317469320314565}
