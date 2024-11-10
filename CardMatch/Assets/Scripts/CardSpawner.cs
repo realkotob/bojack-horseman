@@ -57,15 +57,19 @@ public class CardSpawner : MonoBehaviour
 
         CreateCardDeck();
 
-        var saveData = SaveLoadManager.LoadData();
-        if (saveData.Length > 0)
+        if (PlayerPrefs.GetInt("ContinueGame", 0) == 1)
         {
-            SpawnCards(saveData);
+            var saveData = SaveLoadManager.LoadData();
+            if (saveData.Length > 0)
+            {
+                SpawnCards(saveData);
+                return;
+            }
         }
-        else
-        {
-            SpawnCards();
-        }
+
+        cardCount = PlayerPrefs.GetInt("CardCount", 12);
+
+        SpawnCards();
     }
 
     private void ResetBoard()
