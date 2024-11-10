@@ -10,6 +10,8 @@ public class CardFlip : MonoBehaviour
 
     [Header("References")]
     [SerializeField]
+    private Transform rotationParent;
+    [SerializeField]
     private Image imageBack;
     [SerializeField]
     private Image imageFront;
@@ -24,8 +26,8 @@ public class CardFlip : MonoBehaviour
 
     void Start()
     {
-        backRotation = transform.rotation;
-        frontRotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0, 180, 0));
+        backRotation = rotationParent.rotation;
+        frontRotation = Quaternion.Euler(rotationParent.eulerAngles + new Vector3(0, 180, 0));
         imageFront.enabled = false;
     }
 
@@ -57,11 +59,12 @@ public class CardFlip : MonoBehaviour
             float step = flipSpeed * Time.deltaTime;
             if (isOpen)
             {
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, frontRotation, step * 180);
-                var angle = Quaternion.Angle(transform.rotation, frontRotation);
+                rotationParent.rotation =
+                    Quaternion.RotateTowards(rotationParent.rotation, frontRotation, step * 180);
+                var angle = Quaternion.Angle(rotationParent.rotation, frontRotation);
                 if (angle < 1f)
                 {
-                    transform.rotation = frontRotation;
+                    rotationParent.rotation = frontRotation;
                     isFlipping = false;
                 }
                 if(angle<90){
@@ -71,11 +74,12 @@ public class CardFlip : MonoBehaviour
             }
             else
             {
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, backRotation, step * 180);
-                var angle = Quaternion.Angle(transform.rotation, backRotation);
+                rotationParent.rotation =
+                    Quaternion.RotateTowards(rotationParent.rotation, backRotation, step * 180);
+                var angle = Quaternion.Angle(rotationParent.rotation, backRotation);
                 if (angle < 1f)
                 {
-                    transform.rotation = backRotation;
+                    rotationParent.rotation = backRotation;
                     isFlipping = false;
                 }
                 if (angle < 90)
