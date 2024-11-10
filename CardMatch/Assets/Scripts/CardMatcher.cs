@@ -14,6 +14,9 @@ public class CardMatcher : MonoBehaviour
     [SerializeField]
     private AudioManager audioManager;
 
+    [SerializeField]
+    private LevelCompletePopup levelCompletePopup;
+
     private CardFlip currentCard = null;
 
     private List<CardFlip> cardsList = new List<CardFlip>();
@@ -103,7 +106,7 @@ public class CardMatcher : MonoBehaviour
     {
         audioManager.PlayLevelComplete();
 
-        // TODO Show win popup
+        levelCompletePopup.Show();
     }
 }
 }
