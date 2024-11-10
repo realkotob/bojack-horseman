@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace CardMatch
+{
 public class RandomSFX : MonoBehaviour
 {
 
@@ -10,11 +12,12 @@ public class RandomSFX : MonoBehaviour
 
     void Start()
     {
-        
     }
 
-    public void Play(){
+    public void Play()
+    {
         int randomIndex = Random.Range(0, audioSources.Count);
         audioSources[randomIndex].Play();
     }
+}
 }

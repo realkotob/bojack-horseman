@@ -11,6 +11,9 @@ public class CardMatcher : MonoBehaviour
     [SerializeField]
     private ScoreManager scoreManager;
 
+    [SerializeField]
+    private AudioManager audioManager;
+
     private CardFlip currentCard = null;
 
     private List<CardFlip> cardsList = new List<CardFlip>();
@@ -46,6 +49,8 @@ public class CardMatcher : MonoBehaviour
 
             scoreManager.IncreaseScoreAndCombo();
 
+            audioManager.Invoke(nameof(AudioManager.PlayMatchSound), 0.2f);
+
             CheckGameComplete();
         }
         else
@@ -53,6 +58,8 @@ public class CardMatcher : MonoBehaviour
             currentCard.SetNotMatched();
             card.SetNotMatched();
             currentCard = null;
+
+            audioManager.Invoke(nameof(AudioManager.PlayMismatchSound), 0.2f);
 
             scoreManager.ResetCombo();
         }
@@ -74,7 +81,7 @@ public class CardMatcher : MonoBehaviour
             // Save empty file when game is finished
             SaveLoadManager.SaveData(new CardData[0]);
 
-            // TODO Show win popup
+            Invoke(nameof(ShowLevelCompletePopup), 0.5f);
         }
         else
         {
@@ -90,6 +97,13 @@ public class CardMatcher : MonoBehaviour
             cardDataList.Add(item.GetCardData());
         }
         return cardDataList.ToArray();
+    }
+
+    public void ShowLevelCompletePopup()
+    {
+        audioManager.PlayLevelComplete();
+
+        // TODO Show win popup
     }
 }
 }

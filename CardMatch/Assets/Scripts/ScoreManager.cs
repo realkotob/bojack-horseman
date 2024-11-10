@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+namespace CardMatch
+{
 public class ScoreManager : MonoBehaviour
 {
 
@@ -38,8 +40,10 @@ public class ScoreManager : MonoBehaviour
         UpdateUIText();
     }
 
-    private void UpdateUIText(){
+    private void UpdateUIText()
+    {
         scoreText.text = "Score: " + currentScore.ToString();
         comboText.text = "Combo: " + currentCombo.ToString() + "x";
     }
+}
 }
