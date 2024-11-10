@@ -25,6 +25,9 @@ public class CardSpawner : MonoBehaviour
     private GridResizer gridResizer;
 
     [SerializeField]
+    private CardMatcher cardMatcher;
+
+    [SerializeField]
     private List<Sprite> heartsSprites = new List<Sprite>();
 
     [SerializeField]
@@ -84,6 +87,7 @@ public class CardSpawner : MonoBehaviour
             var cardObject = Instantiate(cardPrefab, Vector3.zero, Quaternion.identity, gridLayout.transform);
             var cardFlipComponent = cardObject.GetComponent<CardFlip>();
             cardFlipComponent.Initialize(cardId, allSprites[cardId]);
+            cardMatcher.RegisterCard(cardFlipComponent);
         }
 
         gridResizer.ResizeCardsToFitGrid();

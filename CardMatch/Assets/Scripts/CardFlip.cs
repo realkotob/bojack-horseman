@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,12 @@ public class CardFlip : MonoBehaviour
     [SerializeField]
     private float flipSpeed = 0.5f;
 
+    [SerializeField]
+    private float matchDisappearTime = 2f;
+
+    [SerializeField]
+    private float unmatchWaitTime = 2.5f;
+
     [Header("References")]
     [SerializeField]
     private Transform rotationParent;
@@ -18,6 +25,14 @@ public class CardFlip : MonoBehaviour
     [SerializeField]
     private Image imageFront;
 
+#region Public variables
+
+    internal Action<CardFlip> cardOpened;
+
+#endregion
+
+#region Private variables
+
     private Quaternion frontRotation;
     private Quaternion backRotation;
 
@@ -25,6 +40,10 @@ public class CardFlip : MonoBehaviour
     private bool isFlipping = false;
 
     private int cardId = 0;
+
+    private bool isMatched = false;
+
+#endregion
 
     void Start()
     {
@@ -41,8 +60,17 @@ public class CardFlip : MonoBehaviour
 
     void Update()
     {
+        if (!imageBack.gameObject.activeInHierarchy)
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0) || Input.touchCount > 0)
         {
+            if (isMatched || isOpen)
+            {
+                return;
+            }
             if (Input.touchCount > 0)
             {
                 CheckPressed(Input.GetTouch(0).position);
@@ -69,6 +97,11 @@ public class CardFlip : MonoBehaviour
         isOpen = !isOpen;
         isFlipping = true;
         Debug.Log("Flip card to " + isOpen);
+
+        if (isOpen)
+        {
+            cardOpened?.Invoke(this);
+        }
     }
 
     private void ExecuteFlipping()
@@ -108,5 +141,37 @@ public class CardFlip : MonoBehaviour
             }
         }
     }
+
+#region Matching helpers
+
+    public void SetMatched()
+    {
+        isMatched = true;
+
+        Invoke(nameof(HideCard), matchDisappearTime);
+    }
+
+    private void HideCard()
+    {
+        imageBack.gameObject.SetActive(false);
+    }
+
+    public void SetNotMatched()
+    {
+        Invoke(nameof(CloseCard), unmatchWaitTime);
+    }
+
+    private void CloseCard()
+    {
+        isOpen = false;
+        isFlipping = true;
+    }
+
+    public int GetCardId()
+    {
+        return cardId;
+    }
+
+#endregion
 }
 }

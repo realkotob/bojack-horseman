@@ -244,6 +244,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flipSpeed: 4
+  matchDisappearTime: 0.6
+  unmatchWaitTime: 0.45
   rotationParent: {fileID: 8937997998885172128}
   imageBack: {fileID: 2871470063907916647}
   imageFront: {fileID: 5879317469320314565}
